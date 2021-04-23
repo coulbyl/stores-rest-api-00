@@ -12,11 +12,6 @@ app.secret_key = 'coolly'
 api = Api(app)
 
 
-@app.before_first_request
-def run_migration():
-    db.create_all()
-
-
 jwt = JWT(app, authenticate, identity)  # create new endpoint named /auth
 
 for route in ROUTES:
@@ -27,4 +22,4 @@ if __name__ == '__main__':
     from db import db
     db.init_app(app)
 
-    app.run()
+    app.run(port=5000, debug=True)
