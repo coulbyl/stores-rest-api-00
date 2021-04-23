@@ -9,11 +9,15 @@ source venv\\Scripts\\activate <!-- Activate venv on windows with git bash cmd o
 
 pip install -r requirements.txt <!-- Install all packages from the requirements file -->
 
+mkdir tmp <!-- Create temporary folder for save a sqlite database-->
+
 py app.py <!-- Run app -->
 
 ```
 
 ## Description
+
+Comming soon ...
 
 ## Implementation
 
