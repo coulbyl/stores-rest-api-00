@@ -8,5 +8,5 @@ ROUTES = [
     {'resource': ItemList, 'endpoint': '/items'},
     {'resource': StoreList, 'endpoint': '/stores'},
     {'resource': UserRegister, 'endpoint': '/register'},
-    {'resource': User, 'endpoint': '/user<int:user_id'},
+    {'resource': User, 'endpoint': '/user/<int:user_id>'},
 ]
