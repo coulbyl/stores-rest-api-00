@@ -1,4 +1,4 @@
-from resources.user import UserRegister
+from resources.user import UserRegister, User
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
 
@@ -8,4 +8,5 @@ ROUTES = [
     {'resource': ItemList, 'endpoint': '/items'},
     {'resource': StoreList, 'endpoint': '/stores'},
     {'resource': UserRegister, 'endpoint': '/register'},
+    {'resource': User, 'endpoint': '/user<int:user_id'},
 ]
