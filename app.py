@@ -2,10 +2,9 @@ import os
 
 from flask import Flask
 from flask_restful import Api
-from flask_jwt import JWT
+from flask_jwt_extended import JWTManager
 
 from routes import ROUTES
-from security import authenticate, identity
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
@@ -16,7 +15,7 @@ app.secret_key = 'coolly'
 api = Api(app)
 
 
-jwt = JWT(app, authenticate, identity)  # create new endpoint named /auth
+jwt = JWTManager(app)
 
 for route in ROUTES:
     api.add_resource(route['resource'], route['endpoint'])
