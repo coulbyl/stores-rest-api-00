@@ -2,7 +2,7 @@
 
 ## Implementation
 
-This is built with Flask, Flask-RESTful, Flask-JWT, and Flask-SQLALchemy.
+This project is implemented using Flask, Flask-RESTful, Flask-JWT, and Flask-SQLALchemy.
 
 Deployed on Heroku.
 
