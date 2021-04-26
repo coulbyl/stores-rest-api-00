@@ -32,7 +32,7 @@ class Item(Resource):
 
         return item.json(), 201  # created
 
-    @jwt_required
+    @jwt_required()
     def delete(self, name):
         claims = get_jwt_identity()
         if not claims['is_admin']:
