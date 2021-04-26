@@ -8,7 +8,7 @@ class Item(Resource):
     parser.add_argument('price', type=float, required=True, help="This field cannot be left blank.")
     parser.add_argument('store_id', type=int, required=True, help="Every item neends a store id.")
 
-    @jwt_required()
+    @jwt_required
     def get(self, name):
         item = ItemModel.find_by_name(name)
 
@@ -16,7 +16,7 @@ class Item(Resource):
             return item.json()
         return {"message": "Item not found"}, 404
 
-    @jwt_required()
+    @jwt_required
     def post(self, name):
         if ItemModel.find_by_name(name):
             return {'message': f"An item with name {name} already exists."}, 400  # bad request
@@ -32,7 +32,7 @@ class Item(Resource):
 
         return item.json(), 201  # created
 
-    @jwt_required()
+    @jwt_required
     def delete(self, name):
         item = ItemModel.find_by_name(name)
 
@@ -42,7 +42,7 @@ class Item(Resource):
         item.delete()
         return {'message': 'Item deleted'}
 
-    @jwt_required()
+    @jwt_required
     def put(self, name):
         data: dict = Item.parser.parse_args()
         item = ItemModel.find_by_name(name)
