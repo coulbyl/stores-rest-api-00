@@ -63,5 +63,6 @@ class Item(Resource):
 
 class ItemList(Resource):
     @staticmethod
+    @jwt_required(optional=True)
     def get():
         return {"items": [item.json() for item in ItemModel.find_all()]}
