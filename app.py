@@ -6,7 +6,6 @@ from flask_restful import Api
 from flask_jwt_extended import JWTManager
 
 from routes import ROUTES
-from blocklist import BLOCKLIST
 
 app = Flask(__name__)
 
@@ -77,11 +76,6 @@ def revoked_token_callback(header, payload):
         'header': header,
         'payload': payload,
     }), 401
-
-
-@jwt.token_in_blocklist_loader
-def check_if_token_revoked(jwt_header, jwt_payload):
-    return jwt_payload["identity"] in BLOCKLIST
 
 
 for route in ROUTES:

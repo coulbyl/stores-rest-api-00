@@ -1,1 +1,0 @@
-BLOCKLIST = {2, 3}
