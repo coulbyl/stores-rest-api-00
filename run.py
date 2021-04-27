@@ -1,6 +1,5 @@
 from app import app
 from db import db
-from token import TokenBlocklist
 
 
 db.init_app(app)
