@@ -67,7 +67,7 @@ class UserLogin(Resource):
 class UserLogout(Resource):
     @jwt_required()
     def delete(self):
-        jti = get_jwt()['jit']
+        jti = get_jwt()['jti']
         now = datetime.now(timezone.utc)
         current_token = TokenBlocklist(jti=jti, created_at=now)
         current_token.save()
