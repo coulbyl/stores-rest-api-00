@@ -31,12 +31,10 @@ def add_claims_to_jwt(identity):
 
 
 @jwt.expired_token_loader
-def expired_token_callback(header, payload):
+def expired_token_callback(jwt_header, jwt_payload):
     return jsonify({
         'description': 'The Token has expired.',
-        'error': 'token_expired',
-        'header': header,
-        'payload': payload,
+        'error': 'token_expired'
     }), 401
 
 
@@ -44,8 +42,7 @@ def expired_token_callback(header, payload):
 def invalid_token_callback(error):
     return jsonify({
         'description': 'Signature verication failed.',
-        'error': 'invalid_token',
-        'err': error
+        'error': 'invalid_token'
     }), 401
 
 
@@ -53,28 +50,23 @@ def invalid_token_callback(error):
 def missing_token_callback(error):
     return jsonify({
         'description': 'Request does not contain an access token.',
-        'error': 'authorization_required',
-        'err': error
+        'error': 'authorization_required'
     }), 401
 
 
 @jwt.needs_fresh_token_loader
-def token_not_fresh_callback(header, payload):
+def token_not_fresh_callback(jwt_header, jwt_payload):
     return jsonify({
         'description': 'The Token is not fresh.',
-        'error': 'fresh_token_required',
-        'header': header,
-        'payload': payload,
+        'error': 'fresh_token_required'
     }), 401
 
 
 @jwt.revoked_token_loader
-def revoked_token_callback(header, payload):
+def revoked_token_callback(jwt_header, jwt_payload):
     return jsonify({
         'description': 'The Token has been revoked.',
         'error': 'token_revoked',
-        'header': header,
-        'payload': payload,
     }), 401
 
 
