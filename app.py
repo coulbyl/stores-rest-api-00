@@ -6,7 +6,7 @@ from flask_restful import Api
 from flask_jwt_extended import JWTManager
 
 from routes import ROUTES
-from blocklist import BlockList
+from blocklist import BLOCKLIST
 
 app = Flask(__name__)
 
