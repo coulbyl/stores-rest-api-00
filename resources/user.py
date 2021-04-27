@@ -5,10 +5,12 @@ from flask_jwt_extended import (
     create_access_token,
     create_refresh_token,
     jwt_required,
-    get_jwt_identity
+    get_jwt_identity,
+    get_jwt
 )
 
 from models.user import UserModel
+from models.token import TokenBlocklist
 
 _user_parser = reqparse.RequestParser()
 _user_parser.add_argument('username', type=str, required=True, help="This field is required")
@@ -60,6 +62,17 @@ class UserLogin(Resource):
             return {'access_token': access_token, 'refresh_token': refresh_token}, 200
 
         return {'message': 'Invalid credentials.'}, 401
+
+
+class UserLogout(Resource):
+    @jwt_required()
+    def delete(self):
+        jti = get_jwt()['jit']
+        now = datetime.now(timezone.utc)
+        current_token = TokenBlocklist(jti=jti, created_at=now)
+        current_token.save()
+
+        return {"msg": "JWT revoked"}
 
 
 class TokenRefresh(Resource):
