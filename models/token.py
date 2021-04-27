@@ -16,3 +16,8 @@ class TokenBlocklist(db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
+
+    @classmethod
+    def find_by_jti(cls, jti):
+        return cls.query.filter_by(jti=jti).scalar()
+        # db.session.query(TokenBlocklist.id).filter_by(jti=jti).scalar()

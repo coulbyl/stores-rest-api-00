@@ -6,6 +6,7 @@ from flask_restful import Api
 from flask_jwt_extended import JWTManager
 
 from routes import ROUTES
+from models.token import TokenBlocklist
 
 app = Flask(__name__)
 
@@ -21,6 +22,14 @@ api = Api(app)
 
 
 jwt = JWTManager(app)
+
+
+@jwt.token_in_blocklist_loader
+def check_if_token_revoked(jwt_header, jwt_payload):
+    jti = jwt_payload["jti"]
+    token = TokenBlocklist.find_by_jti(jti=jti)
+    # token = db.session.query(TokenBlocklist.id).filter_by(jti=jti).scalar()
+    return token is not None
 
 
 @jwt.user_identity_loader
