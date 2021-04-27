@@ -1,4 +1,4 @@
-from resources.user import UserRegister, User, UserLogin, TokenRefresh
+from resources.user import UserRegister, User, UserLogin, UserLogout, TokenRefresh
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
 
@@ -10,5 +10,6 @@ ROUTES = [
     {'resource': User, 'endpoint': '/user/<int:user_id>'},
     {'resource': UserRegister, 'endpoint': '/register'},
     {'resource': UserLogin, 'endpoint': '/login'},
+    {'resource': UserLogout, 'endpoint': '/logout'},
     {'resource': TokenRefresh, 'endpoint': '/refresh'},
 ]
